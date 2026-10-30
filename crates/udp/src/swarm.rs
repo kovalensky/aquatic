@@ -438,8 +438,8 @@ impl<I: Ip> PeerMap<I> {
                         transaction_id: request.transaction_id,
                         announce_interval: AnnounceInterval::new(
                             config.protocol.peer_announce_interval
-                                + if config.protocol.jitter_window > 0 {
-                                    rng.random_range(1..=config.protocol.jitter_window)
+                                + if config.protocol.jitter_interval > 0 {
+                                    rng.random_range(1..=config.protocol.jitter_interval)
                                 } else {
                                     0
                                 },
@@ -469,8 +469,8 @@ impl<I: Ip> PeerMap<I> {
                         transaction_id: request.transaction_id,
                         announce_interval: AnnounceInterval::new(
                             config.protocol.peer_announce_interval
-                                + if config.protocol.jitter_window > 0 {
-                                    rng.random_range(1..=config.protocol.jitter_window)
+                                + if config.protocol.jitter_interval > 0 {
+                                    rng.random_range(1..=config.protocol.jitter_interval)
                                 } else {
                                     0
                                 },
