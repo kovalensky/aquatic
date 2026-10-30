@@ -159,6 +159,8 @@ pub struct ProtocolConfig {
     pub max_response_peers: usize,
     /// Ask peers to announce this often (seconds)
     pub peer_announce_interval: i32,
+    /// Maximum random window added to announce interval (seconds)
+    pub jitter_interval: i32,
 }
 
 impl Default for ProtocolConfig {
@@ -167,6 +169,7 @@ impl Default for ProtocolConfig {
             max_scrape_torrents: 70,
             max_response_peers: 30,
             peer_announce_interval: 60 * 15,
+            jitter_interval: 0,
         }
     }
 }

@@ -437,7 +437,12 @@ impl<I: Ip> PeerMap<I> {
                     fixed: AnnounceResponseFixedData {
                         transaction_id: request.transaction_id,
                         announce_interval: AnnounceInterval::new(
-                            config.protocol.peer_announce_interval,
+                            config.protocol.peer_announce_interval
+                                + if config.protocol.jitter_window > 0 {
+                                    rng.random_range(1..=config.protocol.jitter_window)
+                                } else {
+                                    0
+                                },
                         ),
                         leechers: NumberOfPeers::new(leechers.try_into().unwrap_or(i32::MAX)),
                         seeders: NumberOfPeers::new(seeders.try_into().unwrap_or(i32::MAX)),
@@ -463,7 +468,12 @@ impl<I: Ip> PeerMap<I> {
                     fixed: AnnounceResponseFixedData {
                         transaction_id: request.transaction_id,
                         announce_interval: AnnounceInterval::new(
-                            config.protocol.peer_announce_interval,
+                            config.protocol.peer_announce_interval
+                                + if config.protocol.jitter_window > 0 {
+                                    rng.random_range(1..=config.protocol.jitter_window)
+                                } else {
+                                    0
+                                },
                         ),
                         leechers: NumberOfPeers::new(leechers.try_into().unwrap_or(i32::MAX)),
                         seeders: NumberOfPeers::new(seeders.try_into().unwrap_or(i32::MAX)),
